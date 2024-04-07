@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.askjeffreyliu.floydsteinbergdithering.Utils
 import com.canhub.cropper.CropImage
 import com.canhub.cropper.CropImageView
 
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 var croppedBitmap = result?.getBitmap(this)
                 if (croppedBitmap != null) {
+                    croppedBitmap = Utils().floydSteinbergDithering(croppedBitmap)
                     // Resizing should have already been taken care of by setRequestedSize
                     // Save
                     openFileOutput(GeneratedImageFilename, Context.MODE_PRIVATE).use { fileOutStream ->
